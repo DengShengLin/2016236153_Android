@@ -1,10 +1,12 @@
 package com.example.firstactivity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,17 +23,34 @@ public class FirstActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //传数据给上一个活动
+                Intent intent4 = new Intent(FirstActivity.this, SecondActivity.class);
+                startActivityForResult(intent4, 1);
+                //传数据给下一个活动SeconfActivity
+/*
+                String data = "Helllo SecondActivity";
+                Intent intent3 = new Intent(FirstActivity.this, SecondActivity.class);
+                intent.putExtra("extra_data", data);
+                startActivity(intent3);
+*/
+
                 //Toast的点击触发事件用makeTest方法
+
                 Toast.makeText(FirstActivity.this,"Toast的点击触发事件-->进入第二个活动",Toast.LENGTH_SHORT).show();
+
                 //显式Intent
-                /*
-                Intent intent = new Intent(FirstActivity.this,SecondActivity.class);
-                startActivity(intent);
-                */
-                //隐式Intent
-                Intent intent1 = new Intent("com.example.firstactivity.ACTION_START");
-                intent1.addCategory("com.example.firstactivity.MY_CATEGORY");
+/*
+                Intent intent1 = new Intent(FirstActivity.this,SecondActivity.class);
                 startActivity(intent1);
+*/
+
+                //隐式Intent
+/*
+                Intent intent2 = new Intent("com.example.firstactivity.ACTION_START");
+                intent1.addCategory("com.example.firstactivity.MY_CATEGORY");
+                startActivity(intent2);
+*/
+
             }
         });
     }
@@ -61,5 +80,21 @@ public class FirstActivity extends AppCompatActivity {
             default:
         }
         return true;
+    }
+
+    //好像有问题---------------------------------------------------------
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        //这句可以没有吗？
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case 1:
+                if (requestCode == RESULT_OK) {
+                    String returnedData = data.getStringExtra("data_return");
+                    Log.d("FirstActivity", returnedData);
+                }
+                break;
+            default:
+        }
     }
 }
