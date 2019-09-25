@@ -3,6 +3,7 @@ package com.example.firstactivity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,7 +22,16 @@ public class FirstActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //Toast的点击触发事件用makeTest方法
-                Toast.makeText(FirstActivity.this,"Toast的点击触发事件！",Toast.LENGTH_SHORT).show();
+                Toast.makeText(FirstActivity.this,"Toast的点击触发事件-->进入第二个活动",Toast.LENGTH_SHORT).show();
+                //显式Intent
+                /*
+                Intent intent = new Intent(FirstActivity.this,SecondActivity.class);
+                startActivity(intent);
+                */
+                //隐式Intent
+                Intent intent1 = new Intent("com.example.firstactivity.ACTION_START");
+                intent1.addCategory("com.example.firstactivity.MY_CATEGORY");
+                startActivity(intent1);
             }
         });
     }
