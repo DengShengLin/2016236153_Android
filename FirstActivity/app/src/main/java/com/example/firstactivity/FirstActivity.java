@@ -28,7 +28,7 @@ public class FirstActivity extends AppCompatActivity {
                 startActivityForResult(intent4, 1);
                 //传数据给下一个活动SeconfActivity
 /*
-                String data = "Helllo SecondActivity";
+                String data = "Hello SecondActivity";
                 Intent intent3 = new Intent(FirstActivity.this, SecondActivity.class);
                 intent.putExtra("extra_data", data);
                 startActivity(intent3);
@@ -97,4 +97,19 @@ public class FirstActivity extends AppCompatActivity {
             default:
         }
     }
+
+  /*
+   * 源代码
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case 1:
+                if (resultCode == RESULT_OK) {
+                    String returnedData = data.getStringExtra("data_return");
+                    Log.d("FirstActivity", returnedData);
+                }
+                break;
+            default:
+        }
+    }*/
 }
