@@ -14,7 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class FirstActivity extends AppCompatActivity {
+public class FirstActivity extends BaseActivity {
 
 //    public static final String TAG = "MainActivity";
     @Override
@@ -26,6 +26,8 @@ public class FirstActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                SecondActivity.actionStart(FirstActivity.this, "data1", "data2");
 
                 //用于显示stabdard模式的演示
                 Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
