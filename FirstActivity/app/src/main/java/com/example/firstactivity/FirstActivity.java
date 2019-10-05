@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,17 +16,24 @@ import android.widget.Toast;
 
 public class FirstActivity extends AppCompatActivity {
 
+//    public static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d("FirstActivity", this.toString());
         setContentView(R.layout.first_layout);
         Button button1 = (Button) findViewById(R.id.button_1);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //用于显示stabdard模式的演示
+                Intent intent = new Intent(FirstActivity.this, SecondActivity.class);
+                startActivity(intent);
+
                 //传数据给上一个活动
-                Intent intent4 = new Intent(FirstActivity.this, SecondActivity.class);
-                startActivityForResult(intent4, 1);
+//                Intent intent4 = new Intent(FirstActivity.this, SecondActivity.class);
+//                startActivityForResult(intent4, 1);
                 //传数据给下一个活动SeconfActivity
 /*
                 String data = "Hello SecondActivity";
@@ -59,6 +67,12 @@ public class FirstActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main,menu);
         return true;
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d("Firstactivity", "onRestart");
     }
 
     @Override

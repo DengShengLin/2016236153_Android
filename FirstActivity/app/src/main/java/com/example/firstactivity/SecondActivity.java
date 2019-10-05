@@ -17,6 +17,17 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.second_layout);
 
+        //用于sigleTop的展示  返回FirstActibity
+        Button button_6 = (Button) findViewById(R.id.button_6);
+        button_6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SecondActivity.this, FirstActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         //用于返回给FirstAC的值的按钮
         Button button5 = (Button) findViewById(R.id.button_5);
         button5.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +67,12 @@ public class SecondActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d("SecondAcyivity", "onDestroy");
     }
 
     @Override
